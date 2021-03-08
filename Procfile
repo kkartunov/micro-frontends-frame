@@ -1,1 +1,1 @@
-web: npm run local-server
+web: npm run local-client
