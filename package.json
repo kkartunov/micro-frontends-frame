@@ -4,10 +4,11 @@
     "start": "node server.js",
     "build": "webpack --mode=${APPMODE:-development} --env.APPENV=${APPENV:-dev} --env.SEGMENT_ANALYTICS_KEY=${SEGMENT_ANALYTICS_KEY:-NS}",
     "local-server": "nodemon ./server.js",
-    "local-client": "webpack-dev-server --mode=development --port 8080 --env.APPENV=local",
+    "local-client": "webpack-dev-server --mode=development --port 8081 --env.APPENV=local --host 0.0.0.0",
     "lint": "eslint src --ext js",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
-    "format": "prettier --write \"./**\""
+    "format": "prettier --write \"./**\"",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
