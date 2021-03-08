@@ -26,12 +26,14 @@ app.get("/micro-frontends-config", async function (req, res) {
       break;
     case APP_CONST.APP_ENV_LOCAL.toLowerCase() :
     case APP_CONST.APP_ENV_LOCAL_MULTI.toLowerCase() :
+    case APP_CONST.APP_ENV_HEROKU.toLowerCase() :
       mfeRoutes = await fsPromises.readFile(path.join(configPath + env_config.mfeConfigPath))
       break;
     default :
       res.send({'error': { message: "Check application environment", code: 500 }})
       break;
   }
+  console.log("/micro-frontends-config", env_config, process.env.APPENV.toLowerCase(), mfeRoutes)
   res.send(mfeRoutes);
 });
 
@@ -51,6 +53,10 @@ app.get("*", async function (req, res) {
       mfeIndex = await axios.get(env_config.mfeIndexPath)
       mfeIndex = mfeIndex.data
       break;
+    case APP_CONST.APP_ENV_HEROKU.toLowerCase() :
+      mfeIndex = await axios.get(env_config.mfeIndexPath)
+      mfeIndex = mfeIndex.data
+      break;
     default :
       res.send({'error': { message: "Check application environment", code: 500 }})
       break;
@@ -64,6 +70,7 @@ app.get("*", async function (req, res) {
       break;
     case APP_CONST.APP_ENV_LOCAL.toLowerCase() :
     case APP_CONST.APP_ENV_LOCAL_MULTI.toLowerCase() :
+    case APP_CONST.APP_ENV_HEROKU.toLowerCase() :
       mfeRoutes = await fsPromises.readFile(path.join(configPath + env_config.mfeRoutesPath))
       break;
     default :

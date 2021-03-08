@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "@topcoder/micro-frontends-navbar-app": "https://tc-micro-frontends-navbar.herokuapp.com/navbar/topcoder-micro-frontends-navbar-app.js",
+    "@topcoder/micro-frontends-community-admin-app": "http://localhost:8505/topcoder-micro-frontends-community-admin-app.js"
+  }
+}
